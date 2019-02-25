@@ -37,11 +37,6 @@ void loop() {
   // Read Instatatius State of the Input Pins
   bool noisyWifiSwitch = digitalRead(readWifiSwitch);
   bool noisyWriteSwitch = digitalRead(writeWifiSwitch);
-//  Serial.print("noisyWifiSwitch:");
-//  Serial.print(noisyWifiSwitch);
-//  Serial.print("\t");
-//  Serial.print("noisyWriteSwitch:");
-//  Serial.println(noisyWriteSwitch);
   
   // Pin Noise Reduction 
   // Changes Button State after lowPass is greater the lowPassInterations
@@ -61,7 +56,6 @@ void loop() {
     if(buttonReadWifiState == LOW){
       digitalWrite(readWifiLight,HIGH); //Turns On Indicator Light
       getWifiPasswords();
-      Serial.println("here");
       // Writes String from the Serialport to the EEPROM
       for(int x; x<sizeof(myString) - 1; x++){
         myString[x] = Serial.read();
@@ -70,10 +64,10 @@ void loop() {
       digitalWrite(readWifiLight,LOW); //Turns Off Indicator Light
     }
     if(buttonWriteWifiState == LOW){
-      digitalWrite(writeWifiSwitch,HIGH); //Turns on Indicator Light
+      digitalWrite(writeWifiLed,HIGH); //Turns on Indicator Light
       // Writes EEPROM to Notepad
       writeWifiPasswords(EEPROM.get(addr, myString));
-      digitalWrite(writeWifiSwitch,LOW); //Turns Off Indicator Light
+      digitalWrite(writeWifiLed,LOW); //Turns Off Indicator Light
     }
   }
 
